@@ -13,7 +13,7 @@ func AuthRouter(api *gin.RouterGroup) {
 	authService := service.NewAuthService(authRepository)
 	authHandler := handler.NewAuthHandler(authService)
 
-
 	api.POST("/auth/register", authHandler.Register)
 	api.POST("/auth/login", authHandler.Login)
+	api.POST("/auth/logout", authHandler.Logout)
 }

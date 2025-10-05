@@ -81,3 +81,15 @@ func (h *authHandler) Login(c *gin.Context) {
 
 	c.JSON(http.StatusOK, res)
 }
+
+func (h *authHandler) Logout(c *gin.Context) {
+
+	c.SetCookie("token", "", -1, "/", "", false, true)
+
+	res := helper.Response(dto.ResponseWithParams{
+		StatusCode: http.StatusOK,
+		Message:    "Logout successfully",
+	})
+
+	c.JSON(http.StatusOK, res)
+}
