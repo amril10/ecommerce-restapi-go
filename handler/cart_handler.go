@@ -22,7 +22,13 @@ func NewCartHandler(s service.CartService) *cartHandler {
 }
 
 func (h *cartHandler) GetAllCart(c *gin.Context) {
-	carts, err := h.service.GetAllCart()
+	userIDInterface := c.MustGet("userID")
+	userID, ok := userIDInterface.(int)
+	if !ok {
+		errorhandler.HandleError(c, &errorhandler.UnauthorizedError{Message: "Invalid user ID"})
+		return
+	}
+	carts, err := h.service.GetAll(userID)
 	if err != nil {
 		errorhandler.HandleError(c, err)
 		return

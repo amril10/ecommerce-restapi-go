@@ -11,7 +11,7 @@ import (
 )
 
 type CartService interface {
-	GetAllCart() ([]dto.CartResponse, error)
+	GetAll(userID int) ([]dto.CartResponse, error)
 	CreateOrUpdateCart(req *dto.CartRequest, UserID int) (*dto.CartResponse, error)
 	UpdateCart(id int, userID int, req *dto.UpdateCartRequest) (*dto.UpdateCartResponse, error)
 	DeleteCart(id int) error
@@ -27,8 +27,8 @@ func NewCartService(r repository.CartRepository) CartService {
 	}
 }
 
-func (s *cartService) GetAllCart() ([]dto.CartResponse, error) {
-	carts, err := s.repo.GetAllCart()
+func (s *cartService) GetAll(userID int) ([]dto.CartResponse, error) {
+	carts, err := s.repo.GetAllCart(userID)
 	if err != nil {
 		return nil, &errorhandler.InternalServerError{Message: err.Error()}
 	}

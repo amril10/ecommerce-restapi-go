@@ -28,6 +28,7 @@ func LoadDB() {
 	// &model.Category{},
 	// &model.Product{},
 	// &model.Cart{},
+	// &model.Address{},
 	)
 
 	if err != nil {

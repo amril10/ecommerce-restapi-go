@@ -12,4 +12,5 @@ type User struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Carts     []Cart
+	Addresses []Address
 }

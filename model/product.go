@@ -5,7 +5,7 @@ import (
 )
 
 type Product struct {
-	ID          int    `gorm:"primaryKey"`
+	ID          int    `gorm:"primaryKey;autoIncrement"`
 	Slug        string `gorm:"size:150;not null"`
 	CategoryID  int
 	Category    Category `gorm:"foreignKey:CategoryID;references:ID"`

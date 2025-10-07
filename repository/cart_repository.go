@@ -6,7 +6,7 @@ import (
 )
 
 type CartRepository interface {
-	GetAllCart() ([]model.Cart, error)
+	GetAllCart(userID int) ([]model.Cart, error)
 	FindCartByUserAndProduct(ProductID, userID int) (*model.Cart, error)
 	ExistProduct(ProductID int) (*model.Product, error)
 	CreateCart(cart *model.Cart) error
@@ -19,15 +19,15 @@ type cartRepository struct {
 	db *gorm.DB
 }
 
-func NewCartRepository(db *gorm.DB) *cartRepository {
+func NewCartRepository(db *gorm.DB) CartRepository {
 	return &cartRepository{
 		db: db,
 	}
 }
 
-func (r *cartRepository) GetAllCart() ([]model.Cart, error) {
+func (r *cartRepository) GetAllCart(userID int) ([]model.Cart, error) {
 	var carts []model.Cart
-	err := r.db.Find(&carts).Order("updated_at DESC").Error
+	err := r.db.Where("user_id = ?", userID).Find(&carts).Order("updated_at DESC").Error
 	return carts, err
 }
 
