@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/amril10/rest-api-go/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -24,11 +23,11 @@ func LoadDB() {
 	DB = db
 
 	err = db.AutoMigrate(
-		&model.Role{},
-		&model.User{},
-		&model.Category{},
-		&model.Product{},
-		&model.Cart{},
+	// &model.Role{},
+	// &model.User{},
+	// &model.Category{},
+	// &model.Product{},
+	// &model.Cart{},
 	)
 
 	if err != nil {

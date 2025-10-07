@@ -1,8 +1,6 @@
 package helper
 
 import (
-	"errors"
-
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -13,11 +11,11 @@ func HashPassword(password string) (string, error) {
 }
 
 func VerifiyPassword(hashPassword string, password string) error {
-	if hashPassword != password {
-		return errors.New("invalid password")
-	}
+	// if hashPassword != password {
+	// 	return errors.New("invalid password")
+	// }
 
-	return nil
-	// err := bcrypt.CompareHashAndPassword([]byte(hashPassword), []byte(password))
-	// return err
+	// return nil
+	err := bcrypt.CompareHashAndPassword([]byte(hashPassword), []byte(password))
+	return err
 }
